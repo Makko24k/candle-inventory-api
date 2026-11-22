@@ -1,6 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Product } from './entities/product.entity.js';
+import { ProductMaterial } from './entities/product-material.entity.js';
+import { ProductionLog } from './entities/production-log.entity.js';
+import { RawMaterial } from './entities/raw-material.entity.js';
+import { Supplier } from './entities/supplier.entity.js';
+import { User } from './entities/user.entity.js';
 
 @Module({
   imports: [
@@ -17,8 +23,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         username: config.get('DB_USERNAME'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
-        autoLoadEntities: true, // finds our entities automatically
-        synchronize: true,      // creates/updates tables from entities (OK for a school project)
+        // The 6 tables from Lab 04
+        entities: [
+          User,
+          Supplier,
+          RawMaterial,
+          Product,
+          ProductMaterial,
+          ProductionLog,
+        ],
+        synchronize: true, // creates the tables from the entities (OK for a school project)
       }),
     }),
   ],
