@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  Post,
-  Req,
-  UseGuards,
-} from '@nestjs/common';
-import { AuthGuard } from './auth.guard.js';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { AuthService } from './auth.service.js';
 import { LoginDto } from './dto/login.dto.js';
 
@@ -20,12 +11,5 @@ export class AuthController {
   @HttpCode(200)
   login(@Body() dto: LoginDto) {
     return this.authService.login(dto);
-  }
-
-  // TEMPORARY test route, only to try the token check. We will delete it later.
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  profile(@Req() req: any) {
-    return req.user;
   }
 }
