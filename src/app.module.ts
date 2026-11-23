@@ -9,6 +9,7 @@ import { RawMaterial } from './entities/raw-material.entity.js';
 import { Supplier } from './entities/supplier.entity.js';
 import { User } from './entities/user.entity.js';
 import { RawMaterialsModule } from './raw-materials/raw-materials.module.js';
+import { SuppliersModule } from './suppliers/suppliers.module.js';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { RawMaterialsModule } from './raw-materials/raw-materials.module.js';
     }),
     AuthModule, // handles Login and JWT authentication
     RawMaterialsModule, // handles the /raw-materials routes
+    SuppliersModule, // handles the /suppliers routes
   ],
 })
 export class AppModule {}
