@@ -27,7 +27,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
         errors = raw;
       } else {
         message = raw;
-        errors = [raw];
+        errors = body.errors ?? [raw]; // use our own "errors" list if the code gave one
       }
     } else {
       console.error(exception); // unexpected error: show it in the terminal
