@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module.js';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -35,6 +36,7 @@ import { User } from './entities/user.entity.js';
         synchronize: true, // creates the tables from the entities (OK for a school project)
       }),
     }),
+    AuthModule, // handles Login and JWT authentication
   ],
 })
 export class AppModule {}
