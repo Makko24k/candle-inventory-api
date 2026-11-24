@@ -11,6 +11,7 @@ import { User } from './entities/user.entity.js';
 import { RawMaterialsModule } from './raw-materials/raw-materials.module.js';
 import { SuppliersModule } from './suppliers/suppliers.module.js';
 import { ProductsModule } from './products/products.module.js';
+import { ProductionLogsModule } from './production-logs/production-logs.module.js';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { ProductsModule } from './products/products.module.js';
     RawMaterialsModule, // handles the /raw-materials routes
     SuppliersModule, // handles the /suppliers routes
     ProductsModule, // handles the /products routes
+    ProductionLogsModule, // handles the /production-logs routes
   ],
 })
 export class AppModule {}
