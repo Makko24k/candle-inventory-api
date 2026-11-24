@@ -12,6 +12,7 @@ import { RawMaterialsModule } from './raw-materials/raw-materials.module.js';
 import { SuppliersModule } from './suppliers/suppliers.module.js';
 import { ProductsModule } from './products/products.module.js';
 import { ProductionLogsModule } from './production-logs/production-logs.module.js';
+import { UsersModule } from './users/users.module.js';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { ProductionLogsModule } from './production-logs/production-logs.module.j
     SuppliersModule, // handles the /suppliers routes
     ProductsModule, // handles the /products routes
     ProductionLogsModule, // handles the /production-logs routes
+    UsersModule, // handles the /users routes
   ],
 })
 export class AppModule {}
