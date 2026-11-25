@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/suppliers/99999"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 404', function () { pm.response.to.have.status(404); });
+      pm.test('Uses the standard error format', function () {
+        var body = pm.response.json();
+        pm.expect(body.success).to.eql(false);
+        pm.expect(body.statusCode).to.eql(404);
+        pm.expect(body.errors).to.be.an('array');
+      });
+    language: text/javascript
+order: 3000

@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{baseUrl}}/products"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productName": "Scented Soy Candle",
+      "scent": "Rose",
+      "price": 260,
+      "quantityInStock": 0
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () { pm.response.to.have.status(201); });
+      pm.collectionVariables.set('newProductId', pm.response.json().productId);
+    language: text/javascript
+order: 4000

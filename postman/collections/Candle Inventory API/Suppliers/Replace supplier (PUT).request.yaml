@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/suppliers/{{newSupplierId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "supplierName": "Wick Masters",
+      "contactNumber": "09170000000",
+      "address": "Alfonso, Cavite"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+    language: text/javascript
+order: 6000

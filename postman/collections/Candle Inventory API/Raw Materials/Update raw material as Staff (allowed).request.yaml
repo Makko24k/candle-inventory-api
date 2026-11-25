@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/raw-materials/{{newMaterialId}}"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "quantityInStock": 120
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{staffToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+    language: text/javascript
+order: 11000

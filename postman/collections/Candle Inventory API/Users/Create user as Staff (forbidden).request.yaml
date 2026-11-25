@@ -1,0 +1,30 @@
+$kind: http-request
+url: "{{baseUrl}}/users"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "fullName": "Demo Staff",
+      "username": "{{newUsername}}",
+      "password": "{{staffPassword}}",
+      "role": "Staff"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{staffToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 403', function () { pm.response.to.have.status(403); });
+      pm.test('Uses the standard error format', function () {
+        var body = pm.response.json();
+        pm.expect(body.success).to.eql(false);
+        pm.expect(body.statusCode).to.eql(403);
+        pm.expect(body.errors).to.be.an('array');
+      });
+    language: text/javascript
+order: 6000

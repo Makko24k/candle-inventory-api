@@ -2,6 +2,12 @@
 workspace:
   id: ded5b659-faae-41a2-846a-0ee198943551
 
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../postman/collections/Candle Inventory API: a9b82586-19f6-46bf-8084-1c0b3a594979
+
 # All resources in the `postman/` folder are automatically registered in Local View.
 # Point to additional files outside the `postman/` folder to register them individually. Example:
 #localResources:

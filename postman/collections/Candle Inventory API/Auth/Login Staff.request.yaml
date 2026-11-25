@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{baseUrl}}/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "{{staffUsername}}",
+      "password": "{{staffPassword}}"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+      pm.test('Response has an accessToken', function () { pm.expect(pm.response.json()).to.have.property('accessToken'); });
+      pm.collectionVariables.set('staffToken', pm.response.json().accessToken);
+    language: text/javascript
+order: 2000

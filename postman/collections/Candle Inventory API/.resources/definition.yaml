@@ -1,5 +1,57 @@
 $kind: collection
+description: |-
+  Postman collection for the Scented Candle Inventory and Raw Materials Tracking System (ITEC 116).
+
+  ## Before running
+  1. Start the backend (`npm run start:dev`).
+  2. Open the collection **Variables** tab and fill in the **current value** of adminUsername, adminPassword, staffUsername, and staffPassword (the passwords are not stored in this file).
+  3. Run the **Auth** folder first (Login Admin and Login Staff). They save the tokens automatically.
+
+  ## Assumptions about the data
+  Supplier 1, raw material 1, and product 1 exist, and product 1 has a recipe that uses raw material 1 with enough stock. Running the collection creates new records and deducts a little stock.
+
+  Each request has a test that checks the expected status code, and error requests also check the standard error response format.
 variables:
-  - key: json_web_token_09nh
+  - key: baseUrl
+    value: http://localhost:3000/api/v1
+    disabled: false
+  - key: token
     secret: true
     disabled: false
+  - key: staffToken
+    secret: true
+    disabled: false
+  - key: adminUsername
+    value: ""
+    disabled: false
+  - key: adminPassword
+    secret: true
+    disabled: false
+  - key: staffUsername
+    value: staff1
+    disabled: false
+  - key: staffPassword
+    secret: true
+    disabled: false
+  - key: today
+    value: ""
+    disabled: false
+  - key: newMaterialId
+    value: ""
+    disabled: false
+  - key: newSupplierId
+    value: ""
+    disabled: false
+  - key: newUsername
+    value: ""
+    disabled: false
+scripts:
+  - type: http:beforeRequest
+    code: pm.collectionVariables.set('today', new Date().toISOString().slice(0, 10));
+    language: text/javascript
+auth:
+  - id: 5babe543-e8a3-41dd-b275-d7f8cec35e45
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{token}}"

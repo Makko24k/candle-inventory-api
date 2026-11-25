@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{baseUrl}}/raw-materials"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "materialName": "Glass Jar",
+      "unit": "pcs",
+      "quantityInStock": 100,
+      "reorderLevel": 20,
+      "supplierId": 1
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () { pm.response.to.have.status(201); });
+      pm.collectionVariables.set('newMaterialId', pm.response.json().materialId);
+    language: text/javascript
+order: 6000
